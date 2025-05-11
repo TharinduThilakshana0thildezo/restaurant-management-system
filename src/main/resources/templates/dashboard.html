@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Dashboard</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <h2 class="text-white">Restaurant MS</h2>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
+                                <i class="fas fa-tachometer-alt me-2"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-utensils me-2"></i>
+                                Menu Management
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-chair me-2"></i>
+                                Table Management
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-shopping-cart me-2"></i>
+                                Order Management
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-box me-2"></i>
+                                Inventory Control
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-credit-card me-2"></i>
+                                Payment Processing
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-users me-2"></i>
+                                Employee Management
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-user-friends me-2"></i>
+                                Customer Management
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                Reports
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-cog me-2"></i>
+                                Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                            <i class="fas fa-calendar me-1"></i>
+                            Today
+                        </button>
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <div class="card bg-primary text-white h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-title">Today's Orders</h6>
+                                        <h2 class="mb-0" th:text="${todaysOrders}">0</h2>
+                                    </div>
+                                    <i class="fas fa-shopping-cart fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a href="#" class="text-white stretched-link">View Details</a>
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card bg-success text-white h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-title">Today's Revenue</h6>
+                                        <h2 class="mb-0">Rs.<span th:text="${todaysRevenue}">0.00</span></h2>
+                                    </div>
+                                    <i class="fas fa-dollar-sign fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a href="#" class="text-white stretched-link">View Details</a>
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card bg-warning text-white h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-title">Available Tables</h6>
+                                        <h2 class="mb-0" th:text="${tableCounts.Available}">0</h2>
+                                    </div>
+                                    <i class="fas fa-chair fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a href="#" class="text-white stretched-link">View Details</a>
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card bg-danger text-white h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-title">Pending Orders</h6>
+                                        <h2 class="mb-0" th:text="${orderStatusCounts.Pending}">0</h2>
+                                    </div>
+                                    <i class="fas fa-clock fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a href="#" class="text-white stretched-link">View Details</a>
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-md-8 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Weekly Revenue</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="revenueChart" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Table Status</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="tableStatusChart" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-md-8 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Recent Orders</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Table</th>
+                                                <th>Customer</th>
+                                                <th>Time</th>
+                                                <th>Status</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="order : ${recentOrders}">
+                                                <td th:text="${order.orderId}"></td>
+                                                <td th:text="${order.table != null ? order.table.tableNumber : 'N/A'}"></td>
+                                                <td th:text="${order.customerName}"></td>
+                                                <td th:text="${#temporals.format(order.orderTime, 'HH:mm')}"></td>
+                                                <td>
+                                                    <span th:class="${'badge ' + (
+                                                        order.status.name() == 'Pending' ? 'bg-warning' : 
+                                                        order.status.name() == 'Preparing' ? 'bg-info' : 
+                                                        order.status.name() == 'Ready' ? 'bg-primary' : 
+                                                        order.status.name() == 'Served' ? 'bg-success' : 
+                                                        order.status.name() == 'Paid' ? 'bg-secondary' : 'bg-secondary'
+                                                    )}" th:text="${order.status}"></span>
+                                                </td>
+                                                <td th:text="${'Rs.' + order.totalAmount}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Popular Menu Items</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" 
+                                        th:each="item : ${popularItems}">
+                                        <div>
+                                            <h6 class="mb-0" th:text="${item.name}">Item Name</h6>
+                                            <small class="text-muted" th:text="${item.category.name()}">Category</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-primary rounded-pill" th:text="${item.timesOrdered + ' orders'}"></span>
+                                            <div th:text="${'Rs.' + item.price}"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script th:src="@{/js/dashboard.js}"></script>
+
+    <script th:inline="javascript">
+        
+        const revenueData = /*[[${revenueChart}]]*/ [];
+        const tableStatusCounts = /*[[${tableCounts}]]*/ {};
+        
+        
+        const labels = revenueData.map(item => {
+            const date = new Date(item.date);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        });
+        
+        const revenues = revenueData.map(item => item.totalRevenue);
+        const orders = revenueData.map(item => item.totalOrders);
+        
+        
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Revenue (Rs.)',
+                        data: revenues,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Orders',
+                        data: orders,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+        
+        const tableStatusCtx = document.getElementById('tableStatusChart').getContext('2d');
+        const tableStatusLabels = Object.keys(tableStatusCounts);
+        const tableStatusValues = Object.values(tableStatusCounts);
+        
+        const tableStatusChart = new Chart(tableStatusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: tableStatusLabels,
+                datasets: [{
+                    data: tableStatusValues,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.7)',  // Available
+                        'rgba(255, 99, 132, 0.7)',  // Occupied
+                        'rgba(255, 205, 86, 0.7)',  // Reserved
+                        'rgba(201, 203, 207, 0.7)', // Cleaning
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+       
+    </script>
+</body>
+</html>

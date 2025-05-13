@@ -1,0 +1,201 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    padding-top: 20px;
+    z-index: 100;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+.sidebar-header h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.sidebar .nav-link {
+    color: #adb5bd;
+    padding: 10px 15px;
+    font-size: 16px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: #fff;
+    background-color: #343a40;
+    border-left: 4px solid #007bff;
+}
+
+.sidebar .nav-link i {
+    width: 20px;
+    text-align: center;
+}
+
+
+.main-content {
+    margin-left: 16.666667%;
+    padding: 20px;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.content-header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    width: 40%;
+}
+
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-options {
+    display: flex;
+    gap: 10px;
+}
+
+
+.employee-list {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.btn-action {
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+
+.employee-details {
+    padding: 10px;
+}
+
+.employee-details h4 {
+    margin-bottom: 5px;
+}
+
+.detail-row {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+
+.modal-header {
+    background-color: #f8f9fa;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+}
+
+
+.badge-active {
+    background-color: #28a745;
+}
+
+.badge-inactive {
+    background-color: #dc3545;
+}
+
+.badge-on-leave {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+
+@media (max-width: 992px) {
+    .sidebar {
+        width: 60px;
+    }
+    
+    .sidebar-header h3, 
+    .sidebar .nav-link span {
+        display: none;
+    }
+    
+    .main-content {
+        margin-left: 60px;
+    }
+    
+    .search-container {
+        width: 60%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        height: auto;
+        width: 100%;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .content-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .search-container {
+        width: 100%;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .filter-options {
+        width: 100%;
+    }
+}

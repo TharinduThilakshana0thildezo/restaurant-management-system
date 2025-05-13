@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Ingredients</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <h2>Ingredient Management</h2>
+  <form id="addIngredientForm">
+    <input type="text" id="name" placeholder="Ingredient Name" required>
+    <input type="number" id="quantity" placeholder="Quantity" required>
+    <input type="text" id="unit" placeholder="Unit" required>
+    <input type="number" id="reorderLevel" placeholder="Reorder Level" required>
+    <button type="submit">Add Ingredient</button>
+  </form>
+  <h3>Current Ingredients</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th>Reorder Level</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ingredient : ${ingredients}">
+      <td th:text="${ingredient.name}"></td>
+      <td th:text="${ingredient.quantity}"></td>
+      <td th:text="${ingredient.unit}"></td>
+      <td th:text="${ingredient.reorderLevel}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="/js/manageIngredients.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management</title>
+    <link rel="stylesheet" href="/order/css/order.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Order Management</h1>
+        
+        <div class="order-form">
+            <h2>Create New Order</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="tableNumber">Table Number:</label>
+                    <input type="text" id="tableNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerName">Customer Name:</label>
+                    <input type="text" id="customerName">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea id="notes"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Order Items:</label>
+                    <div id="orderItems">
+                        <div class="order-item">
+                            <input type="number" class="menuItemId" placeholder="Menu Item ID" required>
+                            <input type="number" class="quantity" placeholder="Quantity" min="1" required>
+                            <input type="number" class="price" placeholder="Price" step="0.01" required>
+                            <input type="text" class="instructions" placeholder="Special Instructions">
+                            <button type="button" class="remove-item">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" id="addItem">Add Item</button>
+                </div>
+                <button type="submit">Submit Order</button>
+            </form>
+        </div>
+        
+        <div class="order-list">
+            <h2>Current Orders</h2>
+            <div class="filter-controls">
+                <select id="statusFilter">
+                    <option value="">All Statuses</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="IN_PROGRESS">In Progress</option>
+                    <option value="COMPLETED">Completed</option>
+                </select>
+                <input type="text" id="tableFilter" placeholder="Filter by table">
+            </div>
+            <table id="ordersTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Table</th>
+                        <th>Customer</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/order/js/order.js"></script>
+</body>
+</html>

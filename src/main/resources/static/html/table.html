@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enterprise Restaurant Table Management System">
+    <meta name="author" content="Restaurant Management Solutions">
+    <meta name="keywords" content="restaurant management, table management, seating management">
+    <title>Enterprise Table Management System</title>
+    <link rel="stylesheet" href="/table/css/table.css">
+    
+    <link rel="icon" href="/table/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <h1><span class="primary-text">Table</span> Management Console</h1>
+            <p class="system-subtitle">Restaurant Seating Management</p>
+        </header>
+        
+        <div class="dashboard-grid">
+            <section class="table-form panel">
+                <div class="panel-header">
+                    <h2>Table Configuration</h2>
+                </div>
+                <div class="panel-body">
+                    <form id="tableForm">
+                        <input type="hidden" id="tableId">
+                        <div class="form-group">
+                            <label for="tableNumber">Table Number:</label>
+                            <input type="number" id="tableNumber" required placeholder="Enter table number">
+                        </div>
+                        <div class="form-group">
+                            <label for="seats">Seats Capacity:</label>
+                            <input type="number" id="seats" required min="1" placeholder="Enter seat count">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Current Status:</label>
+                            <select id="status" required>
+                                <option value="Available">Available</option>
+                                <option value="Occupied">Occupied</option>
+                                <option value="Reserved">Reserved</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="waiterId">Assigned Waiter ID:</label>
+                            <input type="number" id="waiterId" required placeholder="Enter waiter ID">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Save Table</button>
+                            <button type="button" id="cancelBtn" class="btn btn-danger" style="display:none;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            
+            <section class="table-list panel">
+                <div class="panel-header">
+                    <h2>Table Inventory</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="filter-controls">
+                        <label for="statusFilter">Filter by Status:</label>
+                        <select id="statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="Available">Available</option>
+                            <option value="Occupied">Occupied</option>
+                            <option value="Reserved">Reserved</option>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="tablesTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Table #</th>
+                                    <th>Capacity</th>
+                                    <th>Status</th>
+                                    <th>Waiter ID</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer class="dashboard-footer">
+            <p>&copy; 2025 Restaurant Management Solutions. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="/table/js/table.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processing</title>
+    <link rel="stylesheet" href="/payment/css/payment.css">
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Payment Processing</h1>
+        
+        <div class="payment-form">
+            <h2>Process New Payment</h2>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="orderId">Order ID:</label>
+                    <input type="number" id="orderId" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method:</label>
+                    <select id="paymentMethod" required>
+                        <option value="">Select Method</option>
+                        <option value="CASH">Cash</option>
+                        <option value="CREDIT_CARD">Credit Card</option>
+                        <option value="DEBIT_CARD">Debit Card</option>
+                    </select>
+                </div>
+                <button type="submit">Process Payment</button>
+            </form>
+        </div>
+        
+        <div class="payment-list">
+            <h2>Recent Payments</h2>
+            <table id="paymentsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Order ID</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/payment/js/payment.js"></script>
+</body>
+</html>

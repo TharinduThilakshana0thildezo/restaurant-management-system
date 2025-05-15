@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Customer Management</title>
+<style>
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  
+  h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+    font-weight: 600;
+  }
+  
+ 
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+  }
+  
+  input::placeholder {
+    color: #aaa;
+  }
+  
+  button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-bottom: 25px;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+
+  ul {
+    list-style-type: none;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+  
+  ul li {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+  }
+  
+  ul li:last-child {
+    border-bottom: none;
+  }
+  
+  ul li:hover {
+    background-color: #f8f9fa;
+  }
+  
+
+  @media (max-width: 600px) {
+    body {
+      padding: 15px;
+    }
+    
+    h2 {
+      font-size: 20px;
+    }
+    
+    button {
+      width: 100%;
+    }
+  }
+</style>
+<script>
+async function fetchCustomers() {
+  const response = await fetch("/api/customers");
+  const customers = await response.json();
+  let list = document.getElementById("customerList");
+  list.innerHTML = "";
+  customers.forEach(c => {
+    list.innerHTML += `<li>${c.name} - ${c.email} - ${c.phone}</li>`;
+  });
+}
+
+async function addCustomer() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  await fetch("/api/customers", {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, phone })
+  });
+  fetchCustomers();
+}
+</script>
+</head>
+<body onload="fetchCustomers()">
+  <h2>Customer Management</h2>
+  <input id="name" placeholder="Name">
+  <input id="email" placeholder="Email">
+  <input id="phone" placeholder="Phone">
+  <button onclick="addCustomer()">Add Customer</button>
+  <ul id="customerList"></ul>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Purchase Orders</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <h2>Create Purchase Order</h2>
+  <form id="purchaseOrderForm">
+    <select id="ingredientId" required>
+      <option th:each="ingredient : ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.name}"></option>
+    </select>
+    <input type="number" id="quantity" placeholder="Order Quantity" required>
+    <select id="vendorId" required>
+      <option th:each="vendor : ${vendors}" th:value="${vendor.id}" th:text="${vendor.name}"></option>
+    </select>
+    <button type="submit">Place Order</button>
+  </form>
+
+  <h3>Pending Orders</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Ingredient</th>
+      <th>Vendor</th>
+      <th>Quantity</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+      <td th:text="${order.ingredient.name}"></td>
+      <td th:text="${order.vendor.name}"></td>
+      <td th:text="${order.quantity}"></td>
+      <td th:text="${order.status}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="/js/purchaseOrders.js"></script>
+</body>
+</html>

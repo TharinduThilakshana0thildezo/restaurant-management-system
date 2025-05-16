@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="/css/style1.css">
+</head>
+<body>
+<div class="container">
+    <h2>Inventory Dashboard</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Reorder Level</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ingredient : ${ingredients}">
+            <td th:text="${ingredient.name}"></td>
+            <td th:text="${ingredient.quantity}"></td>
+            <td th:text="${ingredient.unit}"></td>
+            <td th:text="${ingredient.reorderLevel}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/js/inventory.js"></script>
+<form id="addIngredientForm">
+    <input type="text" id="name" placeholder="Ingredient Name" required>
+    <input type="number" id="quantity" placeholder="Quantity" required>
+    <input type="text" id="unit" placeholder="Unit" required>
+    <input type="number" id="reorderLevel" placeholder="Reorder Level" required>
+    <button type="submit">Add Ingredient</button>
+</form>
+<div class="alert alert-danger" id="lowStockAlert" style="display: none;">
+    Warning! Some ingredients are running low!
+</div>
+</body>
+</html>

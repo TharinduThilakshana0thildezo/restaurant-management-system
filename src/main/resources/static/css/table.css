@@ -1,0 +1,361 @@
+
+:root {
+    --primary-color: #2c3e50;
+    --primary-light: #34495e;
+    --accent-color: #3498db;
+    --accent-hover: #2980b9;
+    --success-color: #27ae60;
+    --success-hover: #219955;
+    --danger-color: #e74c3c;
+    --danger-hover: #c0392b;
+    --warning-color: #f39c12;
+    --light-gray: #f5f7fa;
+    --mid-gray: #ecf0f1;
+    --border-color: #dce1e4;
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --text-white: #ffffff;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.primary-text {
+    color: var(--accent-color);
+}
+
+.system-subtitle {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+
+.dashboard-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 25px;
+}
+
+.dashboard-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+}
+
+
+.panel {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    height: fit-content;
+}
+
+.panel-header {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-header h2 {
+    color: var(--text-white);
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.panel-body {
+    padding: 20px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+input::placeholder {
+    color: #bdc3c7;
+}
+
+.form-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--text-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--text-white);
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-hover);
+}
+
+
+.filter-controls {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.filter-controls label {
+    margin-bottom: 0;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.filter-controls select {
+    width: auto;
+    min-width: 150px;
+}
+
+
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: var(--light-gray);
+    font-weight: 600;
+    color: var(--primary-color);
+    position: sticky;
+    top: 0;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody tr {
+    transition: var(--transition);
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+
+.status-available {
+    color: var(--success-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.status-available::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--success-color);
+    margin-right: 6px;
+}
+
+.status-occupied {
+    color: var(--danger-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.status-occupied::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--danger-color);
+    margin-right: 6px;
+}
+
+.status-reserved {
+    color: var(--warning-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.status-reserved::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--warning-color);
+    margin-right: 6px;
+}
+
+
+.action-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    margin: 0 3px;
+    border-radius: 4px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.edit-btn {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.delete-btn {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: var(--danger-hover);
+}
+
+
+@media screen and (max-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .panel {
+        margin-bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        padding: 15px 10px;
+    }
+    
+    .panel-body {
+        padding: 15px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-controls select {
+        width: 100%;
+    }
+}

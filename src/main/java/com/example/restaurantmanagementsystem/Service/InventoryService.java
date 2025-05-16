@@ -1,3 +1,4 @@
+
 package com.example.restaurantmanagementsystem.Service;
 
 import com.example.restaurantmanagementsystem.model.Ingredient;
@@ -6,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service  // Marks it as a service component
+
+@Service
 public class InventoryService {
+
     @Autowired
     private IngredientRepository ingredientRepository;
 
@@ -18,8 +21,8 @@ public class InventoryService {
     public Ingredient saveIngredient(Ingredient ingredient) {
         return ingredientRepository.save(ingredient);
     }
+
     public List<Ingredient> checkLowStock() {
         return ingredientRepository.findByQuantityLessThan(5);
     }
 }
-

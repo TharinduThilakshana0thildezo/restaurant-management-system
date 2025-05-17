@@ -1,6 +1,5 @@
+// src/main/java/com/example/restaurantmanagementsystem/service/KitchenService.java
 package com.example.restaurantmanagementsystem.Service;
-
-
 
 import com.example.restaurantmanagementsystem.model.Order;
 import com.example.restaurantmanagementsystem.repository.OrderRepository;
@@ -18,15 +17,14 @@ public class KitchenService {
     }
 
     public List<Order> getPendingOrders() {
-        return orderRepo.findByStatusOrderByCreatedAtAsc("NEW");
+        return orderRepo.findByStatusOrderByOrderDateAsc("NEW"); // matches repo signature
     }
 
     public void updateOrderStatus(Long orderId, String status) {
-        Order order = orderRepo.findById(orderId).orElseThrow();
+        Order order = orderRepo.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Order " + orderId + " not found"));
         order.setStatus(status);
         orderRepo.save(order);
     }
 }
-
-
-

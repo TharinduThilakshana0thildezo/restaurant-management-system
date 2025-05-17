@@ -4,7 +4,7 @@ package com.example.restaurantmanagementsystem.Controller;
 
 import com.example.restaurantmanagementsystem.model.Order;
 import com.example.restaurantmanagementsystem.model.OrderItem;
-import com.example.restaurantmanagementsystem.model.service.OrderService;
+import com.example.restaurantmanagementsystem.Service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,7 +2,7 @@ package com.example.restaurantmanagementsystem.Controller;
 
 
 
-import com.restaurant.restaurantkitchendisplay.service.KitchenService;
+import com.example.restaurantmanagementsystem.Service.KitchenService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

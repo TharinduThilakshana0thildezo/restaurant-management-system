@@ -14,8 +14,8 @@ public class OrderSummary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
 
-    @ManyToOne
-    @JoinColumn(name = "table_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "table_id", referencedColumnName = "tableId")
     private TableStatus table;
 
     @Column(name = "customer_name")

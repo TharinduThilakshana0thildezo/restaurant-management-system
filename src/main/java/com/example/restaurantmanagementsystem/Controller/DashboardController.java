@@ -36,7 +36,7 @@ public class DashboardController {
         return "dashboard";
     }
 
-    @GetMapping("/api/tables")
+    @GetMapping("/api/dashboard/tables")
     @ResponseBody
     public List<TableStatus> getTables() {
         return dashboardService.getAllTables();

@@ -99,7 +99,7 @@ git checkout dev
 git pull origin dev
 ```
 
-And you’re done! 😊
+And you’re done! 😊 and error free
 
 ---
 

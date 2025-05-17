@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kitchen Display</title>
+    <style>
+        .order { border: 1px solid #ccc; margin: 10px; padding: 10px; border-radius: 8px; }
+        .items { display: none; margin-top: 10px; }
+        .timer { font-weight: bold; color: red; }
+    </style>
+    <script>
+        function toggleDetails(id) {
+            const el = document.getElementById('details-' + id);
+            el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function startTimers() {
+            document.querySelectorAll('.timer').forEach(el => {
+                const created = new Date(el.dataset.created);
+                setInterval(() => {
+                    const now = new Date();
+                    const diff = now - created;
+                    const min = Math.floor(diff / 60000);
+                    const sec = Math.floor((diff % 60000) / 1000);
+                    el.textContent = `${min}m ${sec}s`;
+                }, 1000);
+            });
+        }
+
+        window.onload = startTimers;
+    </script>
+</head>
+<body>
+<h1>Kitchen Display</h1>
+<div th:each="order : ${orders}" class="order">
+    <h3>
+        Table: <span th:text="${order.tableNumber}"></span> -
+        <span class="timer" th:attr="data-created=${order.createdAt}"></span>
+        <button onclick="toggleDetails([[${order.id}]])">Details</button>
+    </h3>
+
+    <div th:id="'details-' + ${order.id}" class="items">
+        <ul>
+            <li th:each="item : ${order.items}">
+                <b th:text="${item.itemName}"></b> x <span th:text="${item.quantity}"></span><br>
+                <i>Note:</i> <span th:text="${item.specialInstructions}"></span>
+            </li>
+        </ul>
+
+        <form th:action="@{'/kitchen/update/' + ${order.id}}" method="post">
+            <button name="status" value="IN_PROGRESS">In Progress</button>
+            <button name="status" value="READY">Mark Ready</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,14 +1,13 @@
 package com.example.restaurantmanagementsystem.Controller;
 
-
 import com.example.restaurantmanagementsystem.dto.EmployeeDTO;
 import com.example.restaurantmanagementsystem.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -37,13 +36,13 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDTO> createEmployee(@Valid @RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<EmployeeDTO> createEmployee(@Validated @RequestBody EmployeeDTO employeeDTO) {
         EmployeeDTO createdEmployee = employeeService.createEmployee(employeeDTO);
         return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable Long id, @Validated @RequestBody EmployeeDTO employeeDTO) {
         EmployeeDTO updatedEmployee = employeeService.updateEmployee(id, employeeDTO);
         return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
     }
